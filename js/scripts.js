@@ -44,14 +44,10 @@ $(document).ready(function() {
                                    '<label for="new-state">State</label>' +
                                    '<input type="text" class="form-control new-state">' +
                                  '</div>' +
-                                 '<div class="radio">' +
-                                   '<label>' +
-                                     '<input type="radio" name="address-type" value="home-address">Home</label>' +
-                                 '</div>' +
-                                 '<div class="radio">' +
-                                   '<label>' +
-                                     '<input type="radio" name="address-type" value="work-address">Work</label>' +
-                                 '</div>' +
+                                 '<select class="form-control address-type">' +
+                                   '<option value="HOME">Home Address</option>' +
+                                   '<option value="WORK">Work Address</option>' +
+                                 '</select>' +
                                '</div>');
   });
 
@@ -67,7 +63,7 @@ $(document).ready(function() {
       var inputtedStreet = $(this).find("input.new-street").val();
       var inputtedCity = $(this).find("input.new-city").val();
       var inputtedState = $(this).find("input.new-state").val();
-      var inputtedAddressType = $(this).find("input:radio[name=address-type]:checked").val();
+      var inputtedAddressType = $(this).find("select.address-type").val();
       var newAddress = new Address(inputtedStreet, inputtedCity, inputtedState, inputtedAddressType);
       newContact.addresses.push(newAddress);
     });
