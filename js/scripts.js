@@ -5,10 +5,11 @@ function Contact(first, last) {
   this.addresses = [];
 }
 
-function Address(street, city, state) {
+function Address(street, city, state, type) {
   this.street = street;
   this.city = city;
   this.state = state;
+  this.type = type;
 }
 
 Contact.prototype.fullName = function() {
@@ -16,7 +17,7 @@ Contact.prototype.fullName = function() {
 }
 
 Address.prototype.fullAddress = function() {
-  return this.street + ", " + this.city + ", " + this.state;
+  return this.street + ", " + this.city + ", " + this.state + "-->" + this.type;
 }
 
 function resetFields() {
@@ -43,6 +44,14 @@ $(document).ready(function() {
                                    '<label for="new-state">State</label>' +
                                    '<input type="text" class="form-control new-state">' +
                                  '</div>' +
+                                 '<div class="radio">' +
+                                   '<label>' +
+                                     '<input type="radio" name="address-type" value="home-address">Home</label>' +
+                                 '</div>' +
+                                 '<div class="radio">' +
+                                   '<label>' +
+                                     '<input type="radio" name="address-type" value="work-address">Work</label>' +
+                                 '</div>' +
                                '</div>');
   });
 
@@ -58,7 +67,8 @@ $(document).ready(function() {
       var inputtedStreet = $(this).find("input.new-street").val();
       var inputtedCity = $(this).find("input.new-city").val();
       var inputtedState = $(this).find("input.new-state").val();
-      var newAddress = new Address(inputtedStreet, inputtedCity, inputtedState);
+      var inputtedAddressType = $(this).find("input:radio[name=address-type]:checked").val();
+      var newAddress = new Address(inputtedStreet, inputtedCity, inputtedState, inputtedAddressType);
       newContact.addresses.push(newAddress);
     });
 
