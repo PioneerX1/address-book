@@ -30,7 +30,7 @@ function resetFields() {
 // user interface logic
 $(document).ready(function() {
   $("#add-address").click(function() {
-    $("#new-addresses").append('<div class="new-address">' +
+    $("#new-addresses").append('<div class="new-address add-address">' +
                                  '<div class="form-group">' +
                                    '<label for="new-street">Street</label>' +
                                    '<input type="text" class="form-control new-street">' +
@@ -74,6 +74,8 @@ $(document).ready(function() {
         $("ul#addresses").append("<li>" + address.fullAddress() + "</li>");
       });
     });
+
+    $(".add-address").remove();
 
     resetFields();
   });
